@@ -8,6 +8,12 @@ npm install @mui/material @mui/icons-material
 npm install @emtion/react @emotion/styled
 ```
 
+# 규칙
+1. 폴더명은 소문자로 한다.
+2. jsx파일의 첫 글자는 대문자로 한다.
+3. 스타일 페이지는 컴포넌트명.styles.jsx 로 따로 분리하여 관리한다.
+4. import한 스타일의 별칭은 s로 한다.
+
 # UI 구성
 1. 사이드바는 왼쪽에 배치하고 주요 링크 메뉴가 표현 된다.
 2. 사이드바 하단에 현재 로그인 정보를 표시.

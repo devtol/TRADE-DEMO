@@ -1,11 +1,22 @@
+import { ViewInAr, StorefrontOutlined } from '@mui/icons-material';
+
+const icons = {
+    trade: <StorefrontOutlined />,
+    items: <ViewInAr />
+}
+
 export const menuItems = [
     {
         id: 1,
-        name: "Trades"
+        name: "Trades",
+        to: "/trades",
+        icon: icons.trade
     },
     {
         id: 2,
-        name: "item2"
+        name: "Items",
+        to: "/item2",
+        icon: icons.items
     }
 ]
 

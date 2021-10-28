@@ -5,6 +5,9 @@ export const SidebarContainer = styled.div`
     flex-direction: column;
     flex: 1;
     min-width: 160px;
+    position: fixed;
+    background-color: grey;
+    height: 100vh;
 `
 
 export const HeaderContainer = styled.div`
@@ -21,9 +24,29 @@ export const SidemenuContainer = styled.div`
     flex: 11;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    height: 100vh;
 `
 
 export const MenuitemContainer = styled.div`
     padding: 10px;
+    margin-left: 10px;
+`
+
+export const MenuItem = styled.div`
+    display: flex;
+    align-items: center;
+    color: rgba(40, 50, 230);
+    &:hover{
+        cursor: pointer;
+        color: rgba(255, 255, 255);
+        transition: .1s ease-in all;
+    }
+`
+
+export const Icon = styled.div`
+
+`
+
+export const Text = styled.div`
+    margin-left: 10px;
 `
