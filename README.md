@@ -24,4 +24,5 @@ npm install @emtion/react @emotion/styled
 1. 데스크탑(width 1280px 이상): 메뉴 이름 표시 및 왼쪽에 메뉴 아이콘 표시
 2. 태블릿(width 1280 미만): 메뉴 아이콘만 표시
 3. 스마트폰(width 480 미만): 사이드바 사라지고 상단에 햄버거 (메뉴 or 버튼) 표시
+4. 테스트
 
