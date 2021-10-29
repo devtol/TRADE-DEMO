@@ -7,5 +7,5 @@ export const Topbar = styled.div`
     max-height: 75px;
     position: fixed;
     width: 100%;
-    background-color: white;
+    background-color: #d8c1c1;
 `

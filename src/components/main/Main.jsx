@@ -4,6 +4,7 @@ import * as s from './Main.styles'
 import Body from './body/Body'
 
 const main = () => {
+
     return (
         <s.Main>
             <Topbar />

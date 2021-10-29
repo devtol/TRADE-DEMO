@@ -4,10 +4,13 @@ export const SidebarContainer = styled.div`
     display: flex;
     flex-direction: column;
     flex: 1;
-    min-width: 160px;
+    min-width: 75px;
     position: fixed;
-    background-color: grey;
+    background-color: gray;
     height: 100vh;
+    width: ${p => p.isSidebar ? '160px' : '75px'};
+    transition: .1s ease-in all;
+    left: ${p => p.viewSidebar ? '0px' : '-100px'};
 `
 
 export const HeaderContainer = styled.div`
@@ -35,7 +38,11 @@ export const MenuitemContainer = styled.div`
 export const MenuItem = styled.div`
     display: flex;
     align-items: center;
-    color: rgba(40, 50, 230);
+    padding: 0px 5px;
+    color: ${p => p.isItemSelected ? 'rgba(255, 255, 255)' : 'rgba(40, 50, 230)'};
+    font-size: 24px;
+
+    transition: .1s ease-in all;
     &:hover{
         cursor: pointer;
         color: rgba(255, 255, 255);
@@ -44,9 +51,14 @@ export const MenuItem = styled.div`
 `
 
 export const Icon = styled.div`
-
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
 `
 
 export const Text = styled.div`
+    display: flex;    
     margin-left: 10px;
+    ${p => p.isSidebar ? 'visibility: visible' : 'visibility: hidden'}
+    //visibility: ${p => p.isSidebar ? 'visible' : 'hidden'};
 `

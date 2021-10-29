@@ -4,8 +4,8 @@ import Sidebar from './components/sidebar/Sidebar';
 import Main from './components/main/Main';
 import { menuItems } from './data';
 
-
 const App = () => {
+
   return (
     <s.App>
       <Sidebar menuItems={menuItems} />

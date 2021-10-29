@@ -1,21 +1,39 @@
 import * as s from './Sidebar.styles'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Home from '../../pages/Home';
-import { StorefrontOutlined } from '@mui/icons-material';
+import useViewSizePhone from '../../hooks/useViewSizePhone';
+import useIsSidebar from '../../hooks/useIsSidebar';
 
 const Sidebar = (props) => {
     const {
         menuItems = [],
     } = props
 
+    //state
+    const [selectedMenuItem, setSelectedMenuItem] = useState("")
+
+    const handleMenuItemClick = (name) => {
+        setSelectedMenuItem(name);
+    }
+    //윈도우 사이즈에 따라 사이드바 숨김
+    const [viewSidebar, setViewsidebar] = useViewSizePhone(false);
+
+    //윈도우 사이즈에 따라 사이드바 조절
+    const [isSidebar, setSidebar] = useIsSidebar(true)
+
     const menuItemComponent = menuItems.map((item, index) => {
+        //메뉴 클릭시 텍스트 컬러 유지
+        const isItemSelected = selectedMenuItem === item.name;
         return (
             <s.MenuitemContainer key={item.id}>
                 <Link to={item.to} style={{ textDecoration: "none" }}>
-                    <s.MenuItem>
+                    <s.MenuItem
+                        onClick={() => handleMenuItemClick(item.name)}
+                        isItemSelected={isItemSelected}
+                    >
                         <s.Icon>{item.icon}</s.Icon>
-                        <s.Text>{item.name}</s.Text>
+                        <s.Text isSidebar={isSidebar}>{item.name}</s.Text>
                     </s.MenuItem>
                 </Link>
             </s.MenuitemContainer>
@@ -23,7 +41,10 @@ const Sidebar = (props) => {
     })
 
     return (
-        <s.SidebarContainer>
+        <s.SidebarContainer
+            isSidebar={isSidebar}
+            viewSidebar={viewSidebar}
+        >
             <s.HeaderContainer>
                 <Link to="/home">
                     <Home />
