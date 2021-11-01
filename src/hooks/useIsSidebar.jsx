@@ -5,7 +5,7 @@ export default (init) => {
 
     const handler = useEffect(() => {
         const updateWindowWidth = () => {
-            if (window.innerWidth >= 450 && window.innerWidth < 1280) {
+            if (window.innerWidth >= 485 && window.innerWidth < 1280) {
                 setSidebar(false)
             } else if (window.innerWidth >= 1280) {
                 setSidebar(true)

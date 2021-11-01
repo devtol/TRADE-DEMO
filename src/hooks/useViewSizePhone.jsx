@@ -5,9 +5,9 @@ export default (init) => {
 
     const handler = useEffect(() => {
         const updateWindowWidth = () => {
-            if (window.innerWidth < 450) {
+            if (window.innerWidth < 485) {
                 setViewsidebar(false)
-            } else if (window.innerWidth >= 450) {
+            } else if (window.innerWidth >= 485) {
                 setViewsidebar(true)
             }
         }

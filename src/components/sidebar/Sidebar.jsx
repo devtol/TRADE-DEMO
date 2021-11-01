@@ -2,8 +2,8 @@ import * as s from './Sidebar.styles'
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Home from '../../pages/Home';
-import useViewSizePhone from '../../hooks/useViewSizePhone';
-import useIsSidebar from '../../hooks/useIsSidebar';
+import UseViewSizePhone from '../../hooks/UseViewSizePhone';
+import UseIsSidebar from '../../hooks/UseIsSidebar';
 
 const Sidebar = (props) => {
     const {
@@ -17,10 +17,16 @@ const Sidebar = (props) => {
         setSelectedMenuItem(name);
     }
     //윈도우 사이즈에 따라 사이드바 숨김
-    const [viewSidebar, setViewsidebar] = useViewSizePhone(false);
+    const [viewSidebar, setViewsidebar] = UseViewSizePhone(
+        window.innerWidth < 485 ? false
+            : true
+    );
 
     //윈도우 사이즈에 따라 사이드바 조절
-    const [isSidebar, setSidebar] = useIsSidebar(true)
+    const [isSidebar, setSidebar] = UseIsSidebar(
+        window.innerWidth >= 1280 ? true
+            : false
+    )
 
     const menuItemComponent = menuItems.map((item, index) => {
         //메뉴 클릭시 텍스트 컬러 유지
