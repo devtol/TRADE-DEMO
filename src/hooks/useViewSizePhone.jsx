@@ -11,7 +11,9 @@ export default (init) => {
                 setViewsidebar(true)
             }
         }
-        window.addEventListener('resize', updateWindowWidth);
+        window.addEventListener('resize', updateWindowWidth)
+
+        return () => window.removeEventListener('resize', updateWindowWidth)
     }, [viewSidebar])
 
     return [viewSidebar, handler]

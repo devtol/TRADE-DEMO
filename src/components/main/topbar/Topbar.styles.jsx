@@ -12,13 +12,30 @@ export const Topbar = styled.div`
 `
 
 export const TopbarContentContainer = styled.div`
-    flex: 2;
+    flex: 3;
     border: 1px solid red;
+    height: 75px;
+    //padding-right: ${p => p.isSidebar ? '160px' : p.viewSidebar ? '75px' : '0px;'};
+    display: flex;
 `
 
-export const TopbarSideContainer = styled.div`
-    flex: 1;
+export const TopbarLeftContainer = styled.div`
+    flex: 3;
     border: 1px solid blue;
+    position: relative;
+`
+
+export const TopbarRightContainer = styled.div`
+    flex: 1;
+    border: 1px solid green;
+    position: fixed;
+    height: 75px;
+    top: 0;
+    right: 0;
+    text-align: right;
+    width: ${p => p.isSidebar ? '260px' : p.viewSidebar ? '130px' : '0px;'};
+    transition: .1s ease-in all;
+    //margin-right: ${p => p.isSidebar ? '160px' : p.viewSidebar ? '75px' : '0px;'};
 `
 export const SideButton = styled.button`
     border: none;

@@ -7,6 +7,11 @@ npm install @mui/material @mui/icons-material
 ```
 npm install @emtion/react @emotion/styled
 ```
+## 상태관리를 편하게 하기위해 redux 라이브러리 추가
+```
+npm install redux react-redux
+```
+
 
 # 규칙
 1. 폴더명은 소문자로 한다.

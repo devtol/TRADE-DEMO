@@ -17,13 +17,18 @@ const main = () => {
         window.innerWidth >= 1280 ? true
             : false
     )
+
     return (
         <s.Main
             isSidebar={isSidebar}
             viewSidebar={viewSidebar}
         >
-            <Topbar />
-            <Body />
+            <Topbar
+                isSidebar={isSidebar}
+                viewSidebar={viewSidebar}
+            />
+            <Body
+            />
         </s.Main>
     )
 }

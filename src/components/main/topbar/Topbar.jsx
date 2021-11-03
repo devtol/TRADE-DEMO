@@ -2,29 +2,39 @@ import { Fab, Button } from '@mui/material'
 import { Menu } from '@mui/icons-material';
 import * as s from './Topbar.styles'
 import UseViewSizePhone from '../../../hooks/UseViewSizePhone';
+import UseIsSidebar from '../../../hooks/UseIsSidebar';
 
-const Topbar = () => {
+const Topbar = (props) => {
 
-    //윈도우 사이즈에 따라 사이드바 숨김
-    const [viewSidebar, setViewsidebar] = UseViewSizePhone(
-        window.innerWidth < 485 ? false
-            : true
-    );
+    const [isSidebar, setSidebar] = UseIsSidebar(props.isSidebar);
+    const [viewSidebar, setViewsidebar] = UseViewSizePhone(props.viewSidebar);
 
     return (
-        <s.Topbar>
+        <s.Topbar
+            isSidebar={isSidebar}
+            viewSidebar={viewSidebar}
+        >
             {!viewSidebar ?
                 <Fab color="white" aria-label="add">
                     <Menu />
                 </Fab>
                 : <></>
             }
-            <s.TopbarContentContainer>
-                content
+            <s.TopbarContentContainer
+                isSidebar={isSidebar}
+                viewSidebar={viewSidebar}
+            >
+                <s.TopbarLeftContainer>
+                    bbbb
+                </s.TopbarLeftContainer>
+                <s.TopbarRightContainer
+                    isSidebar={isSidebar}
+                    viewSidebar={viewSidebar}
+                >
+                    sssssssssssssssss
+                </s.TopbarRightContainer>
             </s.TopbarContentContainer>
-            <s.TopbarSideContainer>
-                side
-            </s.TopbarSideContainer>
+
         </s.Topbar>
     )
 }
