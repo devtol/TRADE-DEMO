@@ -1,42 +1,57 @@
-import { Fab, Button } from '@mui/material'
-import { Menu } from '@mui/icons-material';
+import { Menu, LoginOutlined } from '@mui/icons-material';
 import * as s from './Topbar.styles'
 import UseViewSizePhone from '../../../hooks/UseViewSizePhone';
 import UseIsSidebar from '../../../hooks/UseIsSidebar';
+import { useState, useEffect } from 'react';
 
 const Topbar = (props) => {
 
-    const [isSidebar, setSidebar] = UseIsSidebar(props.isSidebar);
-    const [viewSidebar, setViewsidebar] = UseViewSizePhone(props.viewSidebar);
+  const [isSidebar, setSidebar] = UseIsSidebar(props.isSidebar);
+  const [viewSidebar, setViewsidebar] = UseViewSizePhone(props.viewSidebar);
 
-    return (
-        <s.Topbar
-            isSidebar={isSidebar}
-            viewSidebar={viewSidebar}
+  const openLogin = () => {
+
+  }
+
+  return (
+    <s.Topbar
+      isSidebar={isSidebar}
+      viewSidebar={viewSidebar}
+    >
+      <s.TopbarContentContainer
+      >
+        <s.TopbarLeftContainer>
+          {!viewSidebar &&
+            <s.MenuContainer>
+              <Menu />
+            </s.MenuContainer>
+          }
+          <s.ContentContainer>
+            content
+          </s.ContentContainer>
+        </s.TopbarLeftContainer>
+        <s.TopbarRightContainer
+          isSidebar={isSidebar}
+          viewSidebar={viewSidebar}
         >
-            {!viewSidebar ?
-                <Fab color="white" aria-label="add">
-                    <Menu />
-                </Fab>
-                : <></>
-            }
-            <s.TopbarContentContainer
-                isSidebar={isSidebar}
-                viewSidebar={viewSidebar}
-            >
-                <s.TopbarLeftContainer>
-                    bbbb
-                </s.TopbarLeftContainer>
-                <s.TopbarRightContainer
-                    isSidebar={isSidebar}
-                    viewSidebar={viewSidebar}
-                >
-                    sssssssssssssssss
-                </s.TopbarRightContainer>
-            </s.TopbarContentContainer>
+          <s.LoginContainer>
+            <s.LoginButton onClick={() => openLogin()}>
+              <s.Icon>
+                <LoginOutlined />
+              </s.Icon>
+              {
+                !!viewSidebar &&
+                <s.Text>
+                  Login
+                </s.Text>
+              }
+            </s.LoginButton>
+          </s.LoginContainer>
+        </s.TopbarRightContainer>
+      </s.TopbarContentContainer>
 
-        </s.Topbar>
-    )
+    </s.Topbar>
+  )
 }
 
 export default Topbar
