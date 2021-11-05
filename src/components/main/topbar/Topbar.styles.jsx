@@ -91,7 +91,6 @@ export const ModalComponent = styled.div`
     ? "display: flex;"
     : "display: none;"
   }
-  transition: 2s ease-in all;
   align-items: center;
   justify-content: center;
 `
@@ -104,5 +103,4 @@ export const ModalContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: 2s ease-in all;
 `
