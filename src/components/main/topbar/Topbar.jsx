@@ -3,15 +3,22 @@ import * as s from './Topbar.styles'
 import UseViewSizePhone from '../../../hooks/UseViewSizePhone';
 import UseIsSidebar from '../../../hooks/UseIsSidebar';
 import { useState, useEffect } from 'react';
+import Login from '../../login/Login';
 
 const Topbar = (props) => {
 
   const [isSidebar, setSidebar] = UseIsSidebar(props.isSidebar);
   const [viewSidebar, setViewsidebar] = UseViewSizePhone(props.viewSidebar);
+  const [isOpenedModalComponent, setOpenedModalComponent] = useState(false);
+  const [isMouseOverModalContainer, setMouseOverModalContainer] = useState(false);
 
-  const openLogin = () => {
-
+  const clickModalComponent = () => {
+    !isMouseOverModalContainer && setOpenedModalComponent(false)
   }
+
+  useEffect(() => {
+
+  }, [isOpenedModalComponent]);
 
   return (
     <s.Topbar
@@ -35,7 +42,7 @@ const Topbar = (props) => {
           viewSidebar={viewSidebar}
         >
           <s.LoginContainer>
-            <s.LoginButton onClick={() => openLogin()}>
+            <s.LoginButton onClick={() => setOpenedModalComponent(true)}>
               <s.Icon>
                 <LoginOutlined />
               </s.Icon>
@@ -49,7 +56,17 @@ const Topbar = (props) => {
           </s.LoginContainer>
         </s.TopbarRightContainer>
       </s.TopbarContentContainer>
-
+      <s.ModalComponent
+        isOpenedModalComponent={isOpenedModalComponent}
+        onClick={clickModalComponent}
+      >
+        <s.ModalContainer
+          onMouseOver={() => setMouseOverModalContainer(true)}
+          onMouseLeave={() => setMouseOverModalContainer(false)}
+        >
+          <Login />
+        </s.ModalContainer>
+      </s.ModalComponent>
     </s.Topbar>
   )
 }

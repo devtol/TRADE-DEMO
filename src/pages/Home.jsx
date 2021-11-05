@@ -9,7 +9,6 @@ const Component = styled.div`
 const Home = () => {
   return (
     <Component>
-      <Login />
     </Component>
   )
 }

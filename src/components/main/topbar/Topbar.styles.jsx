@@ -80,3 +80,29 @@ export const Text = styled.div`
   margin-left: 5px;
   display: flex;
 `
+export const ModalComponent = styled.div`
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.1);
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  ${p => p.isOpenedModalComponent
+    ? "display: flex;"
+    : "display: none;"
+  }
+  transition: 2s ease-in all;
+  align-items: center;
+  justify-content: center;
+`
+export const ModalContainer = styled.div`
+  position: relative;
+  width: 300px;
+  height: 300px;
+  background-color: white;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 2s ease-in all;
+`
