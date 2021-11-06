@@ -1,5 +1,5 @@
-import React from 'react'
-import { useState, useEffect } from 'react';
+import React from "react";
+import { useState, useEffect } from "react";
 
 export default () => {
   const [viewSidebar, setViewsidebar] = useState(true);
@@ -7,13 +7,13 @@ export default () => {
   useEffect(() => {
     const updateWindowWidth = () => {
       if (window.innerWidth < 450) {
-        setViewsidebar(false)
+        setViewsidebar(false);
       } else if (window.innerWidth >= 450) {
-        setViewsidebar(true)
+        setViewsidebar(true);
       }
-    }
-    window.addEventListener('resize', updateWindowWidth);
-  }, [viewSidebar])
+    };
+    window.addEventListener("resize", updateWindowWidth);
+  }, [viewSidebar]);
 
-  return [viewSidebar]
-}
+  return [viewSidebar];
+};

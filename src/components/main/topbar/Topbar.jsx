@@ -1,57 +1,41 @@
-import { Menu, LoginOutlined } from '@mui/icons-material';
-import * as s from './Topbar.styles'
-import UseViewSizePhone from '../../../hooks/UseViewSizePhone';
-import UseIsSidebar from '../../../hooks/UseIsSidebar';
-import { useState, useEffect } from 'react';
-import Login from '../../login/Login';
+import { Menu, LoginOutlined } from "@mui/icons-material";
+import * as s from "./Topbar.styles";
+import UseViewSizePhone from "../../../hooks/UseViewSizePhone";
+import UseIsSidebar from "../../../hooks/UseIsSidebar";
+import { useState, useEffect } from "react";
+import Login from "../../login/Login";
 
 const Topbar = (props) => {
-
   const [isSidebar, setSidebar] = UseIsSidebar(props.isSidebar);
   const [viewSidebar, setViewsidebar] = UseViewSizePhone(props.viewSidebar);
   const [isOpenedModalComponent, setOpenedModalComponent] = useState(false);
-  const [isMouseOverModalContainer, setMouseOverModalContainer] = useState(false);
+  const [isMouseOverModalContainer, setMouseOverModalContainer] =
+    useState(false);
 
   const clickModalComponent = () => {
-    !isMouseOverModalContainer && setOpenedModalComponent(false)
-  }
+    !isMouseOverModalContainer && setOpenedModalComponent(false);
+  };
 
-  useEffect(() => {
-
-  }, [isOpenedModalComponent]);
+  useEffect(() => {}, [isOpenedModalComponent]);
 
   return (
-    <s.Topbar
-      isSidebar={isSidebar}
-      viewSidebar={viewSidebar}
-    >
-      <s.TopbarContentContainer
-      >
+    <s.Topbar isSidebar={isSidebar} viewSidebar={viewSidebar}>
+      <s.TopbarContentContainer>
         <s.TopbarLeftContainer>
-          {!viewSidebar &&
+          {!viewSidebar && (
             <s.MenuContainer>
               <Menu />
             </s.MenuContainer>
-          }
-          <s.ContentContainer>
-            content
-          </s.ContentContainer>
+          )}
+          <s.ContentContainer>content</s.ContentContainer>
         </s.TopbarLeftContainer>
-        <s.TopbarRightContainer
-          isSidebar={isSidebar}
-          viewSidebar={viewSidebar}
-        >
+        <s.TopbarRightContainer isSidebar={isSidebar} viewSidebar={viewSidebar}>
           <s.LoginContainer>
             <s.LoginButton onClick={() => setOpenedModalComponent(true)}>
               <s.Icon>
                 <LoginOutlined />
               </s.Icon>
-              {
-                !!viewSidebar &&
-                <s.Text>
-                  Login
-                </s.Text>
-              }
+              {!!viewSidebar && <s.Text>Login</s.Text>}
             </s.LoginButton>
           </s.LoginContainer>
         </s.TopbarRightContainer>
@@ -68,7 +52,7 @@ const Topbar = (props) => {
         </s.ModalContainer>
       </s.ModalComponent>
     </s.Topbar>
-  )
-}
+  );
+};
 
-export default Topbar
+export default Topbar;

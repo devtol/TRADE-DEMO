@@ -1,5 +1,5 @@
-import * as s from './Login.styles'
-import { MailOutline, VpnKey } from '@mui/icons-material'
+import * as s from "./Login.styles";
+import { MailOutline, VpnKey } from "@mui/icons-material";
 
 const Login = () => {
   return (
@@ -23,23 +23,19 @@ const Login = () => {
           <s.Text>Password</s.Text>
         </s.TitleContainer>
         <s.InputContainer>
-          <s.Input type={'password'}></s.Input>
+          <s.Input type={"password"}></s.Input>
         </s.InputContainer>
       </s.ItemContainer>
       <s.ItemContainer style={{ flexDirection: "row" }}>
         <s.ButtonContainer>
-          <s.Button>
-            Register
-          </s.Button>
+          <s.Button>Register</s.Button>
         </s.ButtonContainer>
         <s.ButtonContainer>
-          <s.Button>
-            Login
-          </s.Button>
+          <s.Button>Login</s.Button>
         </s.ButtonContainer>
       </s.ItemContainer>
     </s.Component>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;

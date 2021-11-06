@@ -1,7 +1,6 @@
 import * as s from './Sidebar.styles'
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import Home from '../../pages/Home';
 import UseViewSizePhone from '../../hooks/UseViewSizePhone';
 import UseIsSidebar from '../../hooks/UseIsSidebar';
 

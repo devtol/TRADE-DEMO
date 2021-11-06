@@ -16,6 +16,7 @@ export const TopbarContentContainer = styled.div`
   flex: 3;
   height: 75px;
   display: flex;
+  
 `
 export const TopbarLeftContainer = styled.div`
   flex: 3;
@@ -38,7 +39,8 @@ export const ContentContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   font-size: 30px;
-  padding: 10px 10px 20px;
+  //padding: 10px 10px 20px;
+  height: 75px;
 `
 export const TopbarRightContainer = styled.div`
   flex: 1;

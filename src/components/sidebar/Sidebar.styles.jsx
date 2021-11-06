@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 export const SidebarContainer = styled.div`
   display: flex;
@@ -8,10 +8,10 @@ export const SidebarContainer = styled.div`
   position: fixed;
   background-color: gray;
   height: 100vh;
-  width: ${p => p.isSidebar ? '160px' : '75px'};
-  transition: .1s ease-in all;
-  left: ${p => p.viewSidebar ? '0px' : '-100px'};    
-`
+  width: ${(p) => (p.isSidebar ? "160px" : "75px")};
+  transition: 0.1s ease-in all;
+  left: ${(p) => (p.viewSidebar ? "0px" : "-100px")};
+`;
 
 export const HeaderContainer = styled.div`
   flex: 1;
@@ -22,43 +22,45 @@ export const HeaderContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-
-`
+`;
 export const SidemenuContainer = styled.div`
   flex: 11;
   display: flex;
   flex-direction: column;
   height: 100vh;
-`
+`;
 
 export const MenuitemContainer = styled.div`
   padding: 10px;
   margin-left: 10px;
-`
+`;
 
 export const MenuItem = styled.div`
   display: flex;
   align-items: center;
   padding: 0px 5px;
-  color: ${p => p.isItemSelected ? 'rgba(255, 255, 255)' : 'rgba(40, 50, 230)'};
+  color: ${(p) =>
+    p.isItemSelected ? "rgba(255, 255, 255)" : "rgba(40, 50, 230)"};
   font-size: 24px;
-  transition: .1s ease-in all;
-  &:hover{
+  transition: 0.1s ease-in all;
+  &:hover {
     cursor: pointer;
     color: rgba(255, 255, 255);
-    transition: .1s ease-in all;
+    transition: 0.1s ease-in all;
   }
-`
+`;
 
 export const Icon = styled.div`
-  margin-top: 5px;
   display: flex;
   align-items: center;
-`
+  height: 40px;
+`;
 
 export const Text = styled.div`
-  display: flex;    
+  display: flex;
+  align-items: center;
   margin-left: 10px;
-  ${p => p.isSidebar ? 'visibility: visible' : 'visibility: hidden'}
-  //visibility: ${p => p.isSidebar ? 'visible' : 'hidden'};
-`
+  height: 40px;
+  ${(p) => (p.isSidebar ? "visibility: visible" : "visibility: hidden")};
+  //visibility: ${(p) => (p.isSidebar ? "visible" : "hidden")};
+`;
