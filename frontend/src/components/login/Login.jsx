@@ -2,7 +2,8 @@ import * as s from "./Login.styles";
 import { MailOutline, VpnKey } from "@mui/icons-material";
 import { useState, useEffect } from "react";
 
-const Login = () => {
+const Login = (props) => {
+  console.log("login page:", props.isOpenedModalComponent);
   const [isClickedRegister, setClickedRegister] = useState(false);
 
   const onRegister = () => {

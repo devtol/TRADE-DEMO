@@ -16,7 +16,7 @@ const Topbar = (props) => {
     !isMouseOverModalContainer && setOpenedModalComponent(false);
   };
 
-  useEffect(() => {}, [isOpenedModalComponent]);
+  useEffect(() => { }, [isOpenedModalComponent]);
 
   return (
     <s.Topbar isSidebar={isSidebar} viewSidebar={viewSidebar}>
@@ -48,7 +48,7 @@ const Topbar = (props) => {
           onMouseOver={() => setMouseOverModalContainer(true)}
           onMouseLeave={() => setMouseOverModalContainer(false)}
         >
-          <Login />
+          <Login isOpenedModalComponent={isOpenedModalComponent} />
         </s.ModalContainer>
       </s.ModalComponent>
     </s.Topbar>
