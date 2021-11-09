@@ -26,7 +26,7 @@ export const Text = styled.div`
   margin-left: 10px;
 `;
 export const Input = styled.input`
-  font-size: 24px;
+  font-size: 20px;
   color: gray;
   border: none;
   border-bottom: 1px solid silver;
@@ -43,6 +43,11 @@ export const ButtonContainer = styled.div`
 
 export const Button = styled.button`
   padding: 10px;
+  width: 100px;
   border: none;
-  font-size: 24px;
+  font-size: 16px;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;

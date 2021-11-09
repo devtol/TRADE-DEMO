@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const TradeItem = styled.div`
-  width: 100%;
+  width: 20rem;
   background-color: #ffdae0;
   display: flex;
   flex-direction: column;
