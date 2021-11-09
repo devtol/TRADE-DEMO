@@ -99,10 +99,14 @@ export const ModalComponent = styled.div`
 export const ModalContainer = styled.div`
   position: relative;
   width: 300px;
-  height: 300px;
+  height: ${p => p.isClickedRegister
+    ? "400px"
+    : "300px"
+  };
   background-color: white;
   border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: .05s ease-in all;
 `

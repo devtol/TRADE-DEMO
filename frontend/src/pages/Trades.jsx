@@ -4,7 +4,7 @@ import styled from "styled-components";
 const Component = styled.div`
   flex: 11;
   display: flex;
-  height: 100vh;
+  //height: 100vh;
   flex-direction: column;
 `;
 const TradeTopContainer = styled.div`

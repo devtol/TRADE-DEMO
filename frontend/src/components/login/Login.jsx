@@ -1,21 +1,35 @@
 import * as s from "./Login.styles";
 import { MailOutline, VpnKey } from "@mui/icons-material";
 import { useState, useEffect } from "react";
-
 const Login = (props) => {
-  console.log("login page:", props.isOpenedModalComponent);
   const [isClickedRegister, setClickedRegister] = useState(false);
+  const [email, setEmail] = useState("");
+
+  useEffect(() => {
+    console.log("email change");
+    console.log("email in");
+  }, [email]);
+
+  useEffect(() => {
+    if (!props.isOpenedModalComponent) {
+      setClickedRegister(false);
+    }
+  }, [props.isOpenedModalComponent, isClickedRegister]);
 
   const onRegister = () => {
     isClickedRegister
       ? console.log("등록")
-      : setClickedRegister(true)
+      : setClickedRegister(true);
+
+    props.setIsClickedRegister(true);
   }
 
   const onLogin = () => {
     isClickedRegister
       ? setClickedRegister(false)
       : console.log("로그인")
+
+    props.setIsClickedRegister(false);
   }
 
   const handleKeyup = (e) => {
@@ -30,6 +44,20 @@ const Login = (props) => {
 
   return (
     <s.Component>
+      {
+        !!isClickedRegister &&
+        <s.ItemContainer>
+          <s.TitleContainer>
+            <s.Icon>
+              <VpnKey />
+            </s.Icon>
+            <s.Text>Username</s.Text>
+          </s.TitleContainer>
+          <s.InputContainer>
+            <s.Input type="text"></s.Input>
+          </s.InputContainer>
+        </s.ItemContainer>
+      }
       <s.ItemContainer>
         <s.TitleContainer>
           <s.Icon>
@@ -43,6 +71,7 @@ const Login = (props) => {
             name="email"
             id="email"
             onKeyUp={handleKeyup}
+            onChange={(e) => setEmail(e.target.value)}
           ></s.Input>
         </s.InputContainer>
       </s.ItemContainer>

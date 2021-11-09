@@ -9,14 +9,16 @@ const Topbar = (props) => {
   const [isSidebar, setSidebar] = UseIsSidebar(props.isSidebar);
   const [viewSidebar, setViewsidebar] = UseViewSizePhone(props.viewSidebar);
   const [isOpenedModalComponent, setOpenedModalComponent] = useState(false);
+  const [isClickedRegister, setIsClickedRegister] = useState(false);
   const [isMouseOverModalContainer, setMouseOverModalContainer] =
     useState(false);
 
   const clickModalComponent = () => {
     !isMouseOverModalContainer && setOpenedModalComponent(false);
+    !isMouseOverModalContainer && setIsClickedRegister(false);
   };
 
-  useEffect(() => { }, [isOpenedModalComponent]);
+  //useEffect(() => { console.log("isClickedRegister", isClickedRegister) }, [isClickedRegister]);
 
   return (
     <s.Topbar isSidebar={isSidebar} viewSidebar={viewSidebar}>
@@ -47,8 +49,12 @@ const Topbar = (props) => {
         <s.ModalContainer
           onMouseOver={() => setMouseOverModalContainer(true)}
           onMouseLeave={() => setMouseOverModalContainer(false)}
+          isClickedRegister={isClickedRegister}
         >
-          <Login isOpenedModalComponent={isOpenedModalComponent} />
+          <Login
+            setIsClickedRegister={setIsClickedRegister}
+            isOpenedModalComponent={isOpenedModalComponent}
+          />
         </s.ModalContainer>
       </s.ModalComponent>
     </s.Topbar>
