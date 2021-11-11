@@ -141,9 +141,7 @@ const Login = (props) => {
         {inputs.filter(e => e.func === btnState).map((input) => (
           <s.ItemContainer>
             <s.TitleContainer>
-              <s.Icon>
-                <PersonOutline />
-              </s.Icon>
+              <s.Icon>{input.icon}</s.Icon>
               <s.Text>{input.label}</s.Text>
             </s.TitleContainer>
             <s.InputContainer>
