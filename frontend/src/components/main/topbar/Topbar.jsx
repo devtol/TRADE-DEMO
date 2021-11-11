@@ -18,7 +18,7 @@ const Topbar = (props) => {
     !isMouseOverModalContainer && setIsClickedRegister(false);
   };
 
-  //useEffect(() => { console.log("isClickedRegister", isClickedRegister) }, [isClickedRegister]);
+  //useEffect(() => { console.log("isMouseOverModalContainer", isMouseOverModalContainer) }, [isMouseOverModalContainer]);
 
   return (
     <s.Topbar isSidebar={isSidebar} viewSidebar={viewSidebar}>

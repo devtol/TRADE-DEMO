@@ -6,7 +6,9 @@ export const Component = styled.div`
   justify-content: center;
   flex-direction: column;
 `;
-
+export const Form = styled.form`
+  
+`
 export const ItemContainer = styled.div`
   display: flex;
   flex-direction: column;
