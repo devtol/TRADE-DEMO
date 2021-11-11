@@ -13,9 +13,16 @@ const Login = (props) => {
     confirmPassword: "",
   });
 
+  useEffect(() => {
+    if (!props.isOpenedModalComponent) {
+      setBtnState("login");
+    }
+  }, [props.isOpenedModalComponent]);
+
   const onRegister = (e) => {
     e.preventDefault();
     setBtnState("register");
+
     props.setIsClickedRegister(true);
   }
 
