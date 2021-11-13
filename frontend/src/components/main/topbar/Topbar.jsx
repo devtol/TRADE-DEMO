@@ -10,36 +10,17 @@ const Topbar = (props) => {
   const [viewSidebar, setViewsidebar] = UseViewSizePhone(props.viewSidebar);
   const [isOpenedModalComponent, setOpenedModalComponent] = useState(false);
   const [isClickedRegister, setIsClickedRegister] = useState(false);
-  const [isMouseOverModalContainer, setMouseOverModalContainer] =
-    useState(false);
 
-  const clickModalComponent = () => {
-    console.log(
-      "clickModalComponent",
-      isMouseOverModalContainer,
-      isOpenedModalComponent
-    );
-    if (!isMouseOverModalContainer) {
-      setOpenedModalComponent(false);
-      setIsClickedRegister(false);
-    }
-    //!isMouseOverModalContainer && setOpenedModalComponent(false);
-    //!isMouseOverModalContainer && setIsClickedRegister(false);
+  //모달창 뒷 배경을 클릭하면 로그인창이 닫힘
+  const onClickModalComponent = () => {
+    setOpenedModalComponent(false);
+    setIsClickedRegister(false);
   };
 
-  const onMouseOverModalContainer = () => {
-    console.log("onMouseOverModalContainer", onMouseOverModalContainer);
-    setMouseOverModalContainer(true);
+  const onClickModalContainer = (e) => {
+    //로그인창 클릭시 클릭이벤트 버블링 방지
+    e.stopPropagation();
   };
-
-  const onMouseLeaveModalContainer = () => {
-    console.log("onMouseLeaveModalContainer", onMouseLeaveModalContainer);
-    setMouseOverModalContainer(false);
-  };
-
-  useEffect(() => {
-    console.log("isMouseOverModalContainer", isMouseOverModalContainer);
-  }, [isMouseOverModalContainer]);
 
   return (
     <s.Topbar isSidebar={isSidebar} viewSidebar={viewSidebar}>
@@ -65,11 +46,10 @@ const Topbar = (props) => {
       </s.TopbarContentContainer>
       <s.ModalComponent
         isOpenedModalComponent={isOpenedModalComponent}
-        onClick={clickModalComponent}
+        onClick={onClickModalComponent}
       >
         <s.ModalContainer
-          onMouseOver={onMouseOverModalContainer}
-          onMouseLeave={onMouseLeaveModalContainer}
+          onClick={onClickModalContainer}
           isClickedRegister={isClickedRegister}
         >
           <Login

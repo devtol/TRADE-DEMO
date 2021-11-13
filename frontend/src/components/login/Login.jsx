@@ -15,7 +15,6 @@ const Login = (props) => {
   });
 
   useEffect(() => {
-    //console.log("props.isOpenedModalComponent", props.isOpenedModalComponent);
     if (!props.isOpenedModalComponent) {
       setBtnState("login");
     }
