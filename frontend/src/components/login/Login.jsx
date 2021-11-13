@@ -20,14 +20,22 @@ const Login = (props) => {
     }
   }, [props.isOpenedModalComponent]);
 
-  const onRegister = (e) => {
+  const onSignUp = (e) => {
     e.preventDefault();
     setBtnState("register");
-
     props.setIsClickedRegister(true);
   };
 
+  const onRegister = (e) => {
+    e.preventDefault();
+  };
+
   const onLogin = (e) => {
+    e.preventDefault();
+    
+  };
+
+  const onCancel = (e) => {
     e.preventDefault();
     setBtnState("login");
     props.setIsClickedRegister(false);
@@ -91,7 +99,7 @@ const Login = (props) => {
       type: "email",
       placeholder: "",
       errorMessage: "이메일 형식이 잘못 되었습니다.",
-      label: "Email",
+      label: "이메일",
       required: true,
       func: "login",
     },
@@ -116,7 +124,7 @@ const Login = (props) => {
       id: 1,
       text: "회원가입",
       type: "button",
-      onClick: onRegister,
+      onClick: onSignUp,
       func: "login",
     },
     {
@@ -137,7 +145,7 @@ const Login = (props) => {
       id: 4,
       text: "취소",
       type: "button",
-      onClick: onLogin,
+      onClick: onCancel,
       func: "register",
     },
   ];

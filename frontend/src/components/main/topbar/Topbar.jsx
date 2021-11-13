@@ -39,7 +39,7 @@ const Topbar = (props) => {
               <s.Icon>
                 <LoginOutlined />
               </s.Icon>
-              {!!viewSidebar && <s.Text>Login</s.Text>}
+              {!!viewSidebar && <s.Text>로그인</s.Text>}
             </s.LoginButton>
           </s.LoginContainer>
         </s.TopbarRightContainer>

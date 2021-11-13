@@ -62,6 +62,7 @@ export const LoginContainer = styled.div`
 export const LoginButton = styled.button`
   padding: 10px;
   font-size: 20px;
+  height: 44px;
   border: none;
   background-color: #a0a0a0;
   display: flex;
@@ -79,6 +80,9 @@ export const Icon = styled.div`
 export const Text = styled.div`
   margin-left: 5px;
   display: flex;
+  height: 44px;
+  justify-content: center;
+  align-items: center;
 `;
 export const ModalComponent = styled.div`
   position: fixed;
