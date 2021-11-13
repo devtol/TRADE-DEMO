@@ -1,7 +1,7 @@
 {
   "name": "trade-api",
   "version": "1.0.0",
-  "description": "",
+  "description": "## 개발환경구성 ### Nodejs ``` npm init -y ``` ### Express ``` npm i express  ``` ### Mongoose ``` npm i mongoose ``` ### Dotenv ``` npm i dotenv ``` ### nodemon ``` npm i nodemon ```",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -14,6 +14,6 @@
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "mongoose": "^6.0.12",
-    "nodemon": "^2.0.14"
+    "nodemon": "^2.0.15"
   }
 }

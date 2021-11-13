@@ -14,11 +14,32 @@ const Topbar = (props) => {
     useState(false);
 
   const clickModalComponent = () => {
-    !isMouseOverModalContainer && setOpenedModalComponent(false);
-    !isMouseOverModalContainer && setIsClickedRegister(false);
+    console.log(
+      "clickModalComponent",
+      isMouseOverModalContainer,
+      isOpenedModalComponent
+    );
+    if (!isMouseOverModalContainer) {
+      setOpenedModalComponent(false);
+      setIsClickedRegister(false);
+    }
+    //!isMouseOverModalContainer && setOpenedModalComponent(false);
+    //!isMouseOverModalContainer && setIsClickedRegister(false);
   };
 
-  //useEffect(() => { console.log("isMouseOverModalContainer", isMouseOverModalContainer) }, [isMouseOverModalContainer]);
+  const onMouseOverModalContainer = () => {
+    console.log("onMouseOverModalContainer", onMouseOverModalContainer);
+    setMouseOverModalContainer(true);
+  };
+
+  const onMouseLeaveModalContainer = () => {
+    console.log("onMouseLeaveModalContainer", onMouseLeaveModalContainer);
+    setMouseOverModalContainer(false);
+  };
+
+  useEffect(() => {
+    console.log("isMouseOverModalContainer", isMouseOverModalContainer);
+  }, [isMouseOverModalContainer]);
 
   return (
     <s.Topbar isSidebar={isSidebar} viewSidebar={viewSidebar}>
@@ -47,8 +68,8 @@ const Topbar = (props) => {
         onClick={clickModalComponent}
       >
         <s.ModalContainer
-          onMouseOver={() => setMouseOverModalContainer(true)}
-          onMouseLeave={() => setMouseOverModalContainer(false)}
+          onMouseOver={onMouseOverModalContainer}
+          onMouseLeave={onMouseLeaveModalContainer}
           isClickedRegister={isClickedRegister}
         >
           <Login

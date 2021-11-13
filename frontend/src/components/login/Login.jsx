@@ -1,3 +1,4 @@
+import React from "react";
 import * as s from "./Login.styles";
 import { MailOutline, VpnKey, PersonOutline } from "@mui/icons-material";
 import { useState, useEffect } from "react";
@@ -14,6 +15,7 @@ const Login = (props) => {
   });
 
   useEffect(() => {
+    //console.log("props.isOpenedModalComponent", props.isOpenedModalComponent);
     if (!props.isOpenedModalComponent) {
       setBtnState("login");
     }
@@ -24,36 +26,37 @@ const Login = (props) => {
     setBtnState("register");
 
     props.setIsClickedRegister(true);
-  }
+  };
 
   const onLogin = (e) => {
     e.preventDefault();
     setBtnState("login");
     props.setIsClickedRegister(false);
-  }
+  };
 
   const inputs = [
     {
       id: 1,
-      icon: <PersonOutline />,
-      name: "username",
-      type: "text",
-      label: "닉네임",
-      placeholder: "닉네임",
-      errorMessage: "닉네임은 2글자 이상 문자와 숫자만 사용 가능합니다.(특수문자 불가능)",
+      icon: <MailOutline />,
+      name: "email",
+      type: "email",
+      placeholder: "",
+      errorMessage: "이메일 형식이 잘못 되었습니다.",
+      label: "이메일",
       required: true,
-      pattern: "^[A-Za-z0-9ㄱ-ㅎㅏ-ㅣ가-힣]",
       func: "register",
     },
     {
       id: 2,
-      icon: <MailOutline />,
-      name: "email",
-      type: "email",
-      placeholder: "Email",
-      errorMessage: "이메일 형식이 잘못 되었습니다.",
-      label: "Email",
+      icon: <PersonOutline />,
+      name: "username",
+      type: "text",
+      label: "닉네임",
+      placeholder: "",
+      errorMessage:
+        "닉네임은 2글자 이상 문자와 숫자만 사용 가능합니다.(특수문자 불가능)",
       required: true,
+      pattern: "^[A-Za-z0-9ㄱ-ㅎㅏ-ㅣ가-힣]",
       func: "register",
     },
     {
@@ -61,10 +64,12 @@ const Login = (props) => {
       icon: <VpnKey />,
       name: "password",
       type: "password",
-      placeholder: "비밀번호",
-      errorMessage: "비밀번호는 8자리 이상 20자리 이하로 입력 가능하며 한개 이상의 숫자와 한개 이상의 특수문자를 포함해야 합니다.",
+      placeholder: "",
+      errorMessage:
+        "비밀번호는 8자리 이상 20자리 이하로 입력 가능하며 한개 이상의 숫자와 한개 이상의 특수문자를 포함해야 합니다.",
       label: "비밀번호",
-      pattern: "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$",
+      pattern:
+        "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$",
       required: true,
       func: "register",
     },
@@ -73,8 +78,9 @@ const Login = (props) => {
       icon: <VpnKey />,
       name: "confirmPassword",
       type: "password",
-      placeholder: "비밀번호",
+      placeholder: "",
       errorMessage: "위에 입력한 비밀번호와 맞지 않습니다.",
+      label: "비밀번호확인",
       pattern: values.password,
       required: true,
       func: "register",
@@ -84,7 +90,7 @@ const Login = (props) => {
       icon: <MailOutline />,
       name: "email",
       type: "email",
-      placeholder: "Email",
+      placeholder: "",
       errorMessage: "이메일 형식이 잘못 되었습니다.",
       label: "Email",
       required: true,
@@ -95,10 +101,12 @@ const Login = (props) => {
       icon: <VpnKey />,
       name: "password",
       type: "password",
-      placeholder: "비밀번호",
-      errorMessage: "비밀번호는 8자리 이상 20자리 이하로 입력 가능하며 한개 이상의 숫자와 한개 이상의 특수문자를 포함해야 합니다.",
+      placeholder: "",
+      errorMessage:
+        "비밀번호는 8자리 이상 20자리 이하로 입력 가능하며 한개 이상의 숫자와 한개 이상의 특수문자를 포함해야 합니다.",
       label: "비밀번호",
-      pattern: "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$",
+      pattern:
+        "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$",
       required: true,
       func: "login",
     },
@@ -135,32 +143,47 @@ const Login = (props) => {
     },
   ];
 
+  const onChange = (e) => {
+    setValues({ ...values, [e.target.name]: e.target.value });
+  };
+
+  useEffect(() => {
+    //console.log(values);
+  }, [values]);
+
   return (
     <s.Component>
       <s.Form>
-        {inputs.filter(e => e.func === btnState).map((input) => (
-          <s.ItemContainer>
-            <s.TitleContainer>
-              <s.Icon>{input.icon}</s.Icon>
-              <s.Text>{input.label}</s.Text>
-            </s.TitleContainer>
-            <s.InputContainer>
-              <Input key={input.id} {...input} value={values[input.name]} />
-            </s.InputContainer>
-          </s.ItemContainer>
-        ))}
-        <s.ItemContainer style={{ flexDirection: "row" }}>
-          {buttons.filter(e => e.func === btnState).map((button) => (
-            <s.ButtonContainer>
-              <Button key={button.id}
-                {...button}
-              />
-            </s.ButtonContainer>
+        {inputs
+          .filter((e) => e.func === btnState)
+          .map((input) => (
+            <s.ItemContainer>
+              <s.TitleContainer>
+                <s.Icon>{input.icon}</s.Icon>
+                <s.Text>{input.label}</s.Text>
+              </s.TitleContainer>
+              <s.InputContainer>
+                <Input
+                  key={input.id}
+                  {...input}
+                  value={values[input.name]}
+                  onChange={onChange}
+                />
+              </s.InputContainer>
+            </s.ItemContainer>
           ))}
+        <s.ItemContainer style={{ flexDirection: "row" }}>
+          {buttons
+            .filter((e) => e.func === btnState)
+            .map((button) => (
+              <s.ButtonContainer>
+                <Button key={button.id} {...button} />
+              </s.ButtonContainer>
+            ))}
         </s.ItemContainer>
       </s.Form>
     </s.Component>
   );
 };
 
-export default Login;
+export default React.memo(Login);
