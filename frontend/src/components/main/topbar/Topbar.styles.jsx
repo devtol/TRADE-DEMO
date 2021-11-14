@@ -98,7 +98,7 @@ export const ModalComponent = styled.div`
 export const ModalContainer = styled.div`
   position: relative;
   width: 330px;
-  height: ${(p) => (p.isClickedRegister ? "450px" : "300px")};
+  height: ${(p) => (p.isClickedRegister ? "650px" : "370px")};
   background-color: white;
   border-radius: 10px;
   display: flex;

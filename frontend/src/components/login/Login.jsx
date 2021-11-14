@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import * as s from "./Login.styles";
 import { MailOutline, VpnKey, PersonOutline } from "@mui/icons-material";
 import { useState, useEffect } from "react";
@@ -28,11 +29,13 @@ const Login = (props) => {
 
   const onRegister = (e) => {
     e.preventDefault();
+    //console.log("onRegister");
+    console.log(values);
+    //const res = await axios.post("/auth/register", )
   };
 
   const onLogin = (e) => {
     e.preventDefault();
-    
   };
 
   const onCancel = (e) => {
@@ -61,22 +64,22 @@ const Login = (props) => {
       label: "닉네임",
       placeholder: "",
       errorMessage:
-        "닉네임은 2글자 이상 문자와 숫자만 사용 가능합니다.(특수문자 불가능)",
+        "닉네임은 2글자 이상 16자리 이하 문자와 숫자만 사용 가능합니다.(특수문자 불가능)",
       required: true,
-      pattern: "^[A-Za-z0-9ㄱ-ㅎㅏ-ㅣ가-힣]",
+      pattern: "^[A-Za-z0-9ㄱ-ㅎㅏ-ㅣ가-힣]{2, 16}",
       func: "register",
     },
     {
       id: 3,
       icon: <VpnKey />,
       name: "password",
-      type: "password",
+      type: "text",
       placeholder: "",
       errorMessage:
         "비밀번호는 8자리 이상 20자리 이하로 입력 가능하며 한개 이상의 숫자와 한개 이상의 특수문자를 포함해야 합니다.",
       label: "비밀번호",
       pattern:
-        "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$",
+        "^(?=.*[0-9])(?=.*[a-z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$",
       required: true,
       func: "register",
     },
@@ -84,9 +87,9 @@ const Login = (props) => {
       id: 4,
       icon: <VpnKey />,
       name: "confirmPassword",
-      type: "password",
+      type: "text",
       placeholder: "",
-      errorMessage: "위에 입력한 비밀번호와 맞지 않습니다.",
+      errorMessage: "위에서 입력한 비밀번호와 맞지 않습니다.",
       label: "비밀번호확인",
       pattern: values.password,
       required: true,
@@ -113,7 +116,7 @@ const Login = (props) => {
         "비밀번호는 8자리 이상 20자리 이하로 입력 가능하며 한개 이상의 숫자와 한개 이상의 특수문자를 포함해야 합니다.",
       label: "비밀번호",
       pattern:
-        "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$",
+        "^(?=.*[0-9])(?=.*[a-z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$",
       required: true,
       func: "login",
     },
@@ -155,7 +158,7 @@ const Login = (props) => {
   };
 
   useEffect(() => {
-    //console.log(values);
+    console.log(values);
   }, [values]);
 
   return (
@@ -184,7 +187,7 @@ const Login = (props) => {
             .filter((e) => e.func === btnState)
             .map((button) => (
               <s.ButtonContainer>
-                <Button key={button.id} {...button} />
+                <Button key={button.id} {...button} onClick={button.onClick} />
               </s.ButtonContainer>
             ))}
         </s.ItemContainer>
