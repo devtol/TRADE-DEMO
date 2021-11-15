@@ -13,9 +13,14 @@ export const Input = styled.input`
   border: 1px solid silver;
   border-radius: 4px;
   width: 90%;
-  &:invalid[focused="true"] ~ span {
-    display: block;
+
+
+  &:invalid ~ span {
+    display: ${p => p.focused == "true"
+    ? "block"
+    : "none"};
   }
+
 `;
 
 export const Span = styled.span`

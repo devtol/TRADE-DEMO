@@ -22,6 +22,9 @@ const Topbar = (props) => {
     e.stopPropagation();
   };
 
+  useEffect(() => {
+    console.log("isOpenedModalComponent", isOpenedModalComponent);
+  }, [isOpenedModalComponent]);
   return (
     <s.Topbar isSidebar={isSidebar} viewSidebar={viewSidebar}>
       <s.TopbarContentContainer>

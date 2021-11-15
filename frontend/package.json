@@ -44,7 +44,7 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:3001/api",
+  "proxy": "http://localhost:3002",
   "main": "index.js",
   "devDependencies": {},
   "keywords": [],

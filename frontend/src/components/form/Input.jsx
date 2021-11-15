@@ -1,10 +1,11 @@
 import * as s from "./Input.styles";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 const Input = (props) => {
   const [focused, setFocused] = useState(false);
   const { label, errorMessage, onChange, id, ...others } = props;
 
   const handleFocus = (e) => {
+    console.log("focused", focused);
     setFocused(true);
   };
 
