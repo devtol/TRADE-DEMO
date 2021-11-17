@@ -38,7 +38,10 @@ const Login = (props) => {
     e.preventDefault();
     //console.log("onRegister");
     console.log(values);
-    return;
+    if (values.password != values.confirmPassword) {
+      alert("입력한 패스워드가 다릅니다 !!");
+      return;
+    }
 
     try {
       const res = await axios.post("/api/auth/register", {
