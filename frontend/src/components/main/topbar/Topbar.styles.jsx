@@ -61,7 +61,7 @@ export const LoginContainer = styled.div`
 `;
 export const LoginButton = styled.button`
   padding: 10px;
-  font-size: 20px;
+  font-size: 16px;
   height: 44px;
   border: none;
   background-color: #a0a0a0;
@@ -86,7 +86,7 @@ export const Text = styled.div`
 `;
 export const ModalComponent = styled.div`
   position: fixed;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.3);
   width: 100vw;
   height: 100vh;
   top: 0;
@@ -98,8 +98,8 @@ export const ModalComponent = styled.div`
 export const ModalContainer = styled.div`
   position: relative;
   width: 330px;
-  height: ${(p) => (p.isClickedRegister ? "650px" : "370px")};
-  background-color: white;
+  //height: ${(p) => (p.isClickedRegister ? "650px" : "370px")};
+  //background-color: white;
   border-radius: 10px;
   display: flex;
   align-items: center;

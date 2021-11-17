@@ -15,7 +15,7 @@ const Input = (props) => {
         {...others}
         onChange={onChange}
         onBlur={handleFocus}
-        onFocused={() => others.name === "confirmPassword" && setFocused(true)}
+        onFocused={() => { console.log(others); others.name === "confirmPassword" && setFocused(true) }}
         focused={focused.toString()}
       ></s.Input>
       <s.Span>{errorMessage}</s.Span>

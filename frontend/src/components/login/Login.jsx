@@ -31,20 +31,21 @@ const Login = (props) => {
   const onSignUp = (e) => {
     e.preventDefault();
     setBtnState("register");
-    props.setIsClickedRegister(true);
+    //props.setIsClickedRegister(true);
   };
 
   const onRegister = async (e) => {
     e.preventDefault();
     //console.log("onRegister");
     console.log(values);
+    return;
+
     try {
       const res = await axios.post("/api/auth/register", {
         username: values.username,
         email: values.email,
         password: values.password
       });
-
       console.log(res);
     } catch (err) {
       console.log(err);
@@ -58,7 +59,7 @@ const Login = (props) => {
   const onCancel = (e) => {
     e.preventDefault();
     setBtnState("login");
-    props.setIsClickedRegister(false);
+    //props.setIsClickedRegister(false);
   };
 
   const inputs = [
@@ -81,22 +82,20 @@ const Login = (props) => {
       label: "닉네임",
       //placeholder: "",
       errorMessage:
-        "닉네임은 2글자 이상 16자리 이하 알파벳과 숫자만 사용 가능합니다.(특수문자 불가능)",
+        "닉네임은 2글자 이상 16자리 이하 알파벳과 숫자만 사용 가능합니다.(특수문자불가)",
       required: true,
-      pattern: "^[A-Za-z0-9]{2, 16}",
+      pattern: "^[A-Za-z0-9]{2,16}$",
       func: "register",
     },
     {
       id: 3,
       icon: <VpnKey />,
       name: "password",
-      type: "text",
+      type: "password",
       //placeholder: "",
-      errorMessage:
-        "비밀번호는 8자리 이상 16자리 이하로 입력 가능하며 한개 이상의 숫자와 한개 이상의 특수문자를 포함해야 합니다.",
+      errorMessage: "비밀번호는 8자리 이상 16자리 이하 문자와 숫자의 조합으로 입력 가능합니다",
       label: "비밀번호",
-      pattern:
-        "^(?=.*[0-9])(?=.*[a-z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$",
+      pattern: "^(?=.*[0-9])(?=.*[a-z])[a-zA-Z0-9]{8,16}$",
       required: true,
       maxLength: 20,
       func: "register",
@@ -105,7 +104,7 @@ const Login = (props) => {
       id: 4,
       icon: <VpnKey />,
       name: "confirmPassword",
-      type: "text",
+      type: "password",
       //placeholder: "",
       errorMessage: "위에서 입력한 비밀번호와 맞지 않습니다.",
       label: "비밀번호확인",
@@ -131,11 +130,10 @@ const Login = (props) => {
       name: "password",
       type: "password",
       //placeholder: "",
-      errorMessage:
-        "비밀번호는 8자리 이상 16자리 이하로 입력 가능하며 한개 이상의 숫자와 한개 이상의 특수문자를 포함해야 합니다.",
+      errorMessage: "비밀번호는 8자리 이상 16자리 이하 문자와 숫자의 조합으로 입력 가능합니다",
       label: "비밀번호",
       pattern:
-        "^(?=.*[0-9])(?=.*[a-z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$",
+        "^(?=.*[0-9])(?=.*[a-z])[a-zA-Z0-9]{8,16}$",
       required: true,
       maxLength: 20,
       func: "login",

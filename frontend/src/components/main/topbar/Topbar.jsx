@@ -9,12 +9,12 @@ const Topbar = (props) => {
   const [isSidebar, setSidebar] = UseIsSidebar(props.isSidebar);
   const [viewSidebar, setViewsidebar] = UseViewSizePhone(props.viewSidebar);
   const [isOpenedModalComponent, setOpenedModalComponent] = useState(false);
-  const [isClickedRegister, setIsClickedRegister] = useState(false);
+  //const [isClickedRegister, setIsClickedRegister] = useState(false);
 
   //모달창 뒷 배경을 클릭하면 로그인창이 닫힘
   const onClickModalComponent = () => {
     setOpenedModalComponent(false);
-    setIsClickedRegister(false);
+    //setIsClickedRegister(false);
   };
 
   const onClickModalContainer = (e) => {
@@ -25,6 +25,7 @@ const Topbar = (props) => {
   useEffect(() => {
     console.log("isOpenedModalComponent", isOpenedModalComponent);
   }, [isOpenedModalComponent]);
+
   return (
     <s.Topbar isSidebar={isSidebar} viewSidebar={viewSidebar}>
       <s.TopbarContentContainer>
@@ -53,10 +54,10 @@ const Topbar = (props) => {
       >
         <s.ModalContainer
           onClick={onClickModalContainer}
-          isClickedRegister={isClickedRegister}
+        //isClickedRegister={isClickedRegister}
         >
           <Login
-            setIsClickedRegister={setIsClickedRegister}
+            //setIsClickedRegister={setIsClickedRegister}
             isOpenedModalComponent={isOpenedModalComponent}
           />
         </s.ModalContainer>
