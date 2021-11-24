@@ -23,3 +23,6 @@ npm i dotenv
 npm i nodemon
 ```
 
+
+## 스키마
+### 아이템
