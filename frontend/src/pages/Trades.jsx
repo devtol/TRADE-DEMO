@@ -15,6 +15,7 @@ const TradeMidContainer = styled.div`
   flex: 9;
   display: flex;
 `;
+
 const Trades = () => {
   return (
     <Component>

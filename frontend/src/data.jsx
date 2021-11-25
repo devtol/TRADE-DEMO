@@ -15,7 +15,7 @@ export const menuItems = [
   {
     id: 2,
     name: "Items",
-    to: "/item2",
+    to: "/items",
     icon: icons.items,
   },
 ];
