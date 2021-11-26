@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import Badge from "../components/badge/Badge";
 
 const Component = styled.div`
   flex: 11;
@@ -21,6 +22,7 @@ const Trades = () => {
     <Component>
       <TradeTopContainer>2안녕하세요</TradeTopContainer>
       <TradeMidContainer>3</TradeMidContainer>
+      <Badge grade={'유니크'} />
     </Component>
   );
 };
