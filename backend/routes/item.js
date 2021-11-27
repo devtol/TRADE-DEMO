@@ -2,7 +2,9 @@ const Item = require("../models/Item");
 const router = require("express").Router();
 
 router.get("/", async(req, res) => {
+  //console.log("items",req)
   const items = await Item.find();
+  //console.log(items);
   res.status(200).json(items);
 });
 

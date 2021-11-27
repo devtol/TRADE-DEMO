@@ -1,9 +1,8 @@
-import React from 'react'
-import axios from 'axios';
+import React from "react";
+import axios from "axios";
 import styled from "styled-components";
-import Item from '../components/item/Item';
-import { useState, useEffect } from 'react';
-
+import Item from "../components/item/Item";
+import { useState, useEffect } from "react";
 
 const Container = styled.div`
   display: flex;
@@ -22,28 +21,49 @@ const FilterContainer = styled.div`
   padding: 10px;
   width: 100%;
   height: 50px;
-  background-color: #ff0000;
+  //background-color: #e9e9e9;
   display: flex;
+  align-items: center;
+  justify-content: center;
 `;
-
+const FilterItem = styled.div`
+  //border: 1px solid silver;
+  font-size: 20px;
+  padding: 10px 20px;
+  margin: 0px 10px;
+  //background-color: ${(p) => (p.isFilterSelected ? "red" : "black")};
+  background-color: ${(p) => (p.isFilterSelected ? "#2e367d" : "transparent")};
+  color: ${(p) => (p.isFilterSelected ? "white" : "black")};
+  //${(p) => p.isFilterSelected && "border-bottom: 2px solid black;"}
+  //color: "black";
+  border-radius: 4px;
+  transition: 0.1s ease-in all;
+  &:hover {
+    cursor: pointer;
+    //border: 2px solid ${(p) => p.color};
+    background-color: 2px solid #2e367d;
+    //font-weight: bold;
+  }
+`;
 const ItemListcontainer = styled.div`
-  padding: 100px 30px;
+  padding: 50px 30px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 `;
 
-
 const Items = () => {
+  const [metaItems, setMetaItems] = useState([]);
   const [items, setItems] = useState([]);
   const [error, setError] = useState(null);
-
+  const [selectedFilter, setSelctedFilter] = useState("");
   const fetchItems = async () => {
-    try{
+    try {
       const res = await axios.get("/api/items");
+      setMetaItems(res.data);
       setItems(res.data);
       console.log(res);
-    }catch(err){
+    } catch (err) {
       console.log(err);
       setError(err);
     }
@@ -53,20 +73,48 @@ const Items = () => {
     fetchItems();
   }, []);
 
+  const filters = [
+    { id: 0, name: "전체", value: "all", color: "white" },
+    { id: 1, name: "일반", value: "일반", color: "white" },
+    { id: 2, name: "세트", value: "세트", color: "green" },
+    { id: 3, name: "고유", value: "유니크", color: "gold" },
+    { id: 4, name: "룬어", value: "runeword", color: "gray" },
+  ];
+
+  useEffect(() => {
+    //console.log(selectedFilter);
+    if (selectedFilter === "all") {
+      setItems(metaItems);
+    } else {
+      setItems(metaItems.filter((item) => item.grade === selectedFilter));
+    }
+  }, [selectedFilter]);
+  const handleFilterClick = (value) => {
+    setSelctedFilter(value);
+  };
+
+  //console.log(selectedFilter);
   return (
     <Container>
-        <FilterContainer>
-          필터
-        </FilterContainer>
-        <ItemListcontainer>
-        {items.map((item) => (
-          <Item item={item} key={item._id}>
-
-          </Item>
+      <FilterContainer>
+        {filters.map((filter) => (
+          <FilterItem
+            id={filter.id}
+            onClick={() => handleFilterClick(filter.value)}
+            color={filter.color}
+            isFilterSelected={selectedFilter === filter.value}
+          >
+            {filter.name}
+          </FilterItem>
         ))}
-        </ItemListcontainer>
+      </FilterContainer>
+      <ItemListcontainer>
+        {items.map((item) => (
+          <Item item={item} key={item._id}></Item>
+        ))}
+      </ItemListcontainer>
     </Container>
-  )
-}
+  );
+};
 
 export default Items;
