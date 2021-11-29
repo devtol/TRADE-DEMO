@@ -61,24 +61,39 @@ const Items = () => {
     try {
       const res = await axios.get("/api/items");
       setMetaItems(res.data);
-      setItems(metaItems.slice(0, 20));
-      console.log(metaItems);
+      setItems(res.data.slice(0, 20));
     } catch (err) {
       console.log(err);
       setError(err);
     }
+    console.log("metaItems", metaItems);
     setLoading(false);
   };
 
   useEffect(() => {
+    console.log("패치 아이템");
     setLoading(true);
     fetchItems();
   }, []);
 
   useEffect(() => {
-    console.log(Math.round(scrollY/360), (items.length/2)-5);
-    if(((items.length/2)-5) < Math.round(scrollY/360)) {
-      setItems([...items, ...metaItems.slice(items.length, items.length+20)]);
+    //window.innerWidth =< 875 1
+    //window.innerWidth > 875 2
+    //window.innerWidth >= 1248 3
+    //window.innerWidth >= 1705 4
+    
+    let range = 1;
+    if(window.innerWidth <= 875) range = 1;
+    if(window.innerWidth > 875) range = 2;
+    if(window.innerWidth > 875 && window.innerWidth >= 1248) range = 3;
+    if(window.innerWidth >= 1248 && window.innerWidth >= 1705) range = 4;
+    
+    console.log(window.innerWidth,range,"스크롤", Math.round(scrollY/360), Math.round((items.length/range)-5));
+
+    if((Math.round((items.length/range)-5)) < Math.round(scrollY/360)) {
+      selectedFilter === "all" 
+        ? setItems([...items, ...metaItems.slice(items.length, items.length+(range * 10))])
+        : setItems([...items, ...metaItems.filter((item) => item.grade === selectedFilter).slice(items.length, items.length+(range * 10))]);
     }
   }, [scrollY]);
 
@@ -92,11 +107,15 @@ const Items = () => {
 
   useEffect(() => {
     //console.log(selectedFilter);
-    if (selectedFilter === "all") {
-      setItems(metaItems.slice(0, 20));
-    } else {
-      setItems(metaItems.filter((item) => item.grade === selectedFilter).slice(0, 20));
-    }
+    let range = 1;
+    if(window.innerWidth <= 875) range = 1;
+    if(window.innerWidth > 875) range = 2;
+    if(window.innerWidth > 875 && window.innerWidth >= 1248) range = 3;
+    if(window.innerWidth >= 1248 && window.innerWidth >= 1705) range = 4;
+
+    selectedFilter === "all" 
+      ? setItems(metaItems.slice(0, range * 10))
+      : setItems(metaItems.filter((item) => item.grade === selectedFilter).slice(0, range * 10));
   }, [selectedFilter]);
   const handleFilterClick = (value) => {
     setSelctedFilter(value);
