@@ -13,8 +13,22 @@ export const ItemContainerTop = styled.div`
   display: flex;
 `;
 export const ItemContainerTopLeft = styled.div`
-  background-color: lightcyan;
+  width: 100%;
+  height: 100%;
   flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+export const ItemImageContainer = styled.div`
+  background-color: white;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+`;
+export const ItemImage = styled.img`
+  src: ${p => p.src};
 `;
 export const ItemContainerTopRight = styled.div`
   background-color: lightgoldenrodyellow;

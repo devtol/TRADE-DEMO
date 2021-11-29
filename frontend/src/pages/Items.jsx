@@ -2,7 +2,9 @@ import React from "react";
 import axios from "axios";
 import styled from "styled-components";
 import Item from "../components/item/Item";
+import { LinearProgress } from "@mui/material";
 import { useState, useEffect } from "react";
+import UseScrollY from "../../src/hooks/UseScrollY";
 
 const Container = styled.div`
   display: flex;
@@ -27,22 +29,16 @@ const FilterContainer = styled.div`
   justify-content: center;
 `;
 const FilterItem = styled.div`
-  //border: 1px solid silver;
   font-size: 20px;
   padding: 10px 20px;
   margin: 0px 10px;
-  //background-color: ${(p) => (p.isFilterSelected ? "red" : "black")};
   background-color: ${(p) => (p.isFilterSelected ? "#2e367d" : "transparent")};
   color: ${(p) => (p.isFilterSelected ? "white" : "black")};
-  //${(p) => p.isFilterSelected && "border-bottom: 2px solid black;"}
-  //color: "black";
   border-radius: 4px;
   transition: 0.1s ease-in all;
   &:hover {
     cursor: pointer;
-    //border: 2px solid ${(p) => p.color};
     background-color: 2px solid #2e367d;
-    //font-weight: bold;
   }
 `;
 const ItemListcontainer = styled.div`
@@ -50,28 +46,41 @@ const ItemListcontainer = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: center;
 `;
 
 const Items = () => {
   const [metaItems, setMetaItems] = useState([]);
   const [items, setItems] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [selectedFilter, setSelctedFilter] = useState("");
+  const [selectedFilter, setSelctedFilter] = useState("all");
+  const { scrollY } = UseScrollY();
+
   const fetchItems = async () => {
     try {
       const res = await axios.get("/api/items");
       setMetaItems(res.data);
-      setItems(res.data);
-      console.log(res);
+      setItems(metaItems.slice(0, 20));
+      console.log(metaItems);
     } catch (err) {
       console.log(err);
       setError(err);
     }
+    setLoading(false);
   };
 
   useEffect(() => {
+    setLoading(true);
     fetchItems();
   }, []);
+
+  useEffect(() => {
+    console.log(Math.round(scrollY/360), (items.length/2)-5);
+    if(((items.length/2)-5) < Math.round(scrollY/360)) {
+      setItems([...items, ...metaItems.slice(items.length, items.length+20)]);
+    }
+  }, [scrollY]);
 
   const filters = [
     { id: 0, name: "전체", value: "all", color: "white" },
@@ -84,9 +93,9 @@ const Items = () => {
   useEffect(() => {
     //console.log(selectedFilter);
     if (selectedFilter === "all") {
-      setItems(metaItems);
+      setItems(metaItems.slice(0, 20));
     } else {
-      setItems(metaItems.filter((item) => item.grade === selectedFilter));
+      setItems(metaItems.filter((item) => item.grade === selectedFilter).slice(0, 20));
     }
   }, [selectedFilter]);
   const handleFilterClick = (value) => {
@@ -96,6 +105,7 @@ const Items = () => {
   //console.log(selectedFilter);
   return (
     <Container>
+      {loading && <LinearProgress />}
       <FilterContainer>
         {filters.map((filter) => (
           <FilterItem
@@ -109,9 +119,12 @@ const Items = () => {
         ))}
       </FilterContainer>
       <ItemListcontainer>
-        {items.map((item) => (
+      {error 
+        ? <div>아이템 정보를 가져오던중 에러가 발생하였습니다.</div>
+        : items.map((item) => (
           <Item item={item} key={item._id}></Item>
-        ))}
+        ))
+      }
       </ItemListcontainer>
     </Container>
   );
