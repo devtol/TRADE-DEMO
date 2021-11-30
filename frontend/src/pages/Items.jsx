@@ -41,6 +41,10 @@ const FilterItem = styled.div`
     background-color: 2px solid #2e367d;
   }
 `;
+const SubFilterItem = styled.div`
+
+`;
+
 const ItemListcontainer = styled.div`
   padding: 50px 30px;
   display: flex;
@@ -49,12 +53,21 @@ const ItemListcontainer = styled.div`
   justify-content: center;
 `;
 
+const getRange = (width) => {
+  if(width <= 875) return 1;
+  if(width > 875) return 2;
+  if(width > 875 && width >= 1248) return 3;
+  if(width >= 1248 && width >= 1705) return 4;
+  if(width >= 1705 && width >= 2077) return 5;
+};
+
 const Items = () => {
   const [metaItems, setMetaItems] = useState([]);
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [selectedFilter, setSelctedFilter] = useState("all");
+  const [subFilter, setSubFilter] = useState({});
   const { scrollY } = UseScrollY();
 
   const fetchItems = async () => {
@@ -77,17 +90,8 @@ const Items = () => {
   }, []);
 
   useEffect(() => {
-    //window.innerWidth =< 875 1
-    //window.innerWidth > 875 2
-    //window.innerWidth >= 1248 3
-    //window.innerWidth >= 1705 4
-    
-    let range = 1;
-    if(window.innerWidth <= 875) range = 1;
-    if(window.innerWidth > 875) range = 2;
-    if(window.innerWidth > 875 && window.innerWidth >= 1248) range = 3;
-    if(window.innerWidth >= 1248 && window.innerWidth >= 1705) range = 4;
-    
+    const range = getRange(window.innerWidth);
+
     console.log(window.innerWidth,range,"스크롤", Math.round(scrollY/360), Math.round((items.length/range)-5));
 
     if((Math.round((items.length/range)-5)) < Math.round(scrollY/360)) {
@@ -107,15 +111,12 @@ const Items = () => {
 
   useEffect(() => {
     //console.log(selectedFilter);
-    let range = 1;
-    if(window.innerWidth <= 875) range = 1;
-    if(window.innerWidth > 875) range = 2;
-    if(window.innerWidth > 875 && window.innerWidth >= 1248) range = 3;
-    if(window.innerWidth >= 1248 && window.innerWidth >= 1705) range = 4;
+    const range = getRange(window.innerWidth);
 
     selectedFilter === "all" 
       ? setItems(metaItems.slice(0, range * 10))
       : setItems(metaItems.filter((item) => item.grade === selectedFilter).slice(0, range * 10));
+    
   }, [selectedFilter]);
   const handleFilterClick = (value) => {
     setSelctedFilter(value);
