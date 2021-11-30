@@ -29,8 +29,10 @@ const FilterContainer = styled.div`
   justify-content: center;
 `;
 const FilterItem = styled.div`
-  font-size: 20px;
-  padding: 10px 20px;
+  font-size: 16px;
+  padding: 5px 10px;
+  width: 40px;
+  text-align: center;
   margin: 0px 10px;
   background-color: ${(p) => (p.isFilterSelected ? "#2e367d" : "transparent")};
   color: ${(p) => (p.isFilterSelected ? "white" : "black")};
@@ -55,10 +57,10 @@ const ItemListcontainer = styled.div`
 
 const getRange = (width) => {
   if(width <= 875) return 1;
-  if(width > 875) return 2;
-  if(width > 875 && width >= 1248) return 3;
-  if(width >= 1248 && width >= 1705) return 4;
-  if(width >= 1705 && width >= 2077) return 5;
+  if(width > 875 && width <= 1248) return 2;
+  if(width > 1248 && width <= 1705) return 3;
+  if(width > 1705 && width <= 2077) return 4;
+  if(width > 2077) return 5;
 };
 
 const Items = () => {
@@ -91,9 +93,7 @@ const Items = () => {
 
   useEffect(() => {
     const range = getRange(window.innerWidth);
-
     console.log(window.innerWidth,range,"스크롤", Math.round(scrollY/360), Math.round((items.length/range)-5));
-
     if((Math.round((items.length/range)-5)) < Math.round(scrollY/360)) {
       selectedFilter === "all" 
         ? setItems([...items, ...metaItems.slice(items.length, items.length+(range * 10))])
@@ -117,6 +117,7 @@ const Items = () => {
       ? setItems(metaItems.slice(0, range * 10))
       : setItems(metaItems.filter((item) => item.grade === selectedFilter).slice(0, range * 10));
     
+
   }, [selectedFilter]);
   const handleFilterClick = (value) => {
     setSelctedFilter(value);
