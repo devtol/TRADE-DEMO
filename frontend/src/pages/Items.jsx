@@ -29,7 +29,6 @@ const FilterContainer = styled.div`
   justify-content: center;
 `;
 const FilterItem = styled.div`
-  font-size: 16px;
   padding: 5px 10px;
   width: 40px;
   text-align: center;
@@ -37,7 +36,7 @@ const FilterItem = styled.div`
   background-color: ${(p) => (p.isFilterSelected ? "#2e367d" : "transparent")};
   color: ${(p) => (p.isFilterSelected ? "white" : "black")};
   border-radius: 4px;
-  transition: 0.1s ease-in all;
+  //transition: 0.2s ease-in all;
   &:hover {
     cursor: pointer;
     background-color: 2px solid #2e367d;
@@ -106,7 +105,7 @@ const Items = () => {
     { id: 1, name: "일반", value: "일반", color: "white" },
     { id: 2, name: "세트", value: "세트", color: "green" },
     { id: 3, name: "고유", value: "유니크", color: "gold" },
-    { id: 4, name: "룬어", value: "runeword", color: "gray" },
+    { id: 4, name: "룬어", value: "룬어", color: "gray" },
   ];
 
   useEffect(() => {
@@ -117,8 +116,22 @@ const Items = () => {
       ? setItems(metaItems.slice(0, range * 10))
       : setItems(metaItems.filter((item) => item.grade === selectedFilter).slice(0, range * 10));
     
+    if(selectedFilter !== "all") {
+      console.log(
+        metaItems
+          .filter((item) => item.grade === selectedFilter)
+          .map((item) => item.type) 
+          .reduce((unique, item) => unique.includes(item) ? unique : [...unique, item], [])
+      );
+    }
 
+    console.log(
+      metaItems
+        .filter((item) => item.grade === selectedFilter)
+        .map((item) => item.options.itemTypes)
+    )
   }, [selectedFilter]);
+
   const handleFilterClick = (value) => {
     setSelctedFilter(value);
   };

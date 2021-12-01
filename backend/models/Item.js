@@ -9,18 +9,7 @@ const itemSchema = new mongoose.Schema(
     type: { type: String, required: true},
     itemClass: { type: String },
     grade: { type: String },
-    options: [
-      { 
-        default: {
-          type: Array
-        }
-      },
-      { 
-        inherence: {
-          type: Array
-        },
-      },
-    ]
+    options: { type: Object }
   }
 )
 
