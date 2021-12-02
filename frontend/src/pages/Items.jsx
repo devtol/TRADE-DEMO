@@ -19,8 +19,9 @@ const ItemContainer = styled.div`
 `;
 
 const FilterContainer = styled.div`
+  flex: 1;
   top: 0;
-  padding: 10px;
+  padding: 10px 0px;
   width: 100%;
   height: 50px;
   //background-color: #e9e9e9;
@@ -29,7 +30,7 @@ const FilterContainer = styled.div`
   justify-content: center;
 `;
 const FilterItem = styled.div`
-  padding: 5px 10px;
+  padding: 5px 5px;
   width: 40px;
   text-align: center;
   margin: 0px 10px;
@@ -42,12 +43,32 @@ const FilterItem = styled.div`
     background-color: 2px solid #2e367d;
   }
 `;
+const SubFilterContainer = styled.div`
+  flex: 1;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+`;
 const SubFilterItem = styled.div`
-
+  padding: 5px 5px;
+  width: auto;
+  text-align: center;
+  margin: 0px 10px;
+  background-color: ${(p) => (p.isSubFilterSelected ? "#2e367d" : "transparent")};
+  color: ${(p) => (p.isSubFilterSelected ? "white" : "black")};
+  border-radius: 4px;
+  &:hover {
+    cursor: pointer;
+    background-color: 2px solid #2e367d;
+  }
 `;
 
 const ItemListcontainer = styled.div`
-  padding: 50px 30px;
+  flex: 10;
+  padding: 10px 20px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -68,7 +89,8 @@ const Items = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [selectedFilter, setSelctedFilter] = useState("all");
-  const [subFilter, setSubFilter] = useState({});
+  const [selectedSubFilter, setSelctedSubFilter] = useState("");
+  const [subFilters, setSubFilters] = useState([]);
   const { scrollY } = UseScrollY();
 
   const fetchItems = async () => {
@@ -93,8 +115,10 @@ const Items = () => {
   useEffect(() => {
     const range = getRange(window.innerWidth);
     console.log(window.innerWidth,range,"스크롤", Math.round(scrollY/360), Math.round((items.length/range)-5));
+    if(selectedSubFilter !== "") return;
+
     if((Math.round((items.length/range)-5)) < Math.round(scrollY/360)) {
-      selectedFilter === "all" 
+      selectedFilter === "all"
         ? setItems([...items, ...metaItems.slice(items.length, items.length+(range * 10))])
         : setItems([...items, ...metaItems.filter((item) => item.grade === selectedFilter).slice(items.length, items.length+(range * 10))]);
     }
@@ -108,33 +132,61 @@ const Items = () => {
     { id: 4, name: "룬어", value: "룬어", color: "gray" },
   ];
 
+  //필터가 선택되면
   useEffect(() => {
-    //console.log(selectedFilter);
     const range = getRange(window.innerWidth);
 
     selectedFilter === "all" 
       ? setItems(metaItems.slice(0, range * 10))
       : setItems(metaItems.filter((item) => item.grade === selectedFilter).slice(0, range * 10));
     
+    //서브필터를 바꾼다
     if(selectedFilter !== "all") {
-      console.log(
-        metaItems
-          .filter((item) => item.grade === selectedFilter)
-          .map((item) => item.type) 
-          .reduce((unique, item) => unique.includes(item) ? unique : [...unique, item], [])
+      setSubFilters(
+        ["일반","세트","유니크"].indexOf(selectedFilter) > -1
+          ? metaItems
+            .filter((item) => item.grade === selectedFilter)
+            .map((item) => item.type) 
+            .reduce((unique, item) => unique.includes(item) ? unique : [...unique, item], [])
+          : metaItems
+            .filter((item) => item.grade === selectedFilter)
+            .map((item) => item.options.itemTypes)
+            .flat()
+            .reduce((unique, item) => unique.includes(item) ? unique : [...unique, item], [])
       );
+    }else{
+      setSubFilters([]);
     }
 
-    console.log(
-      metaItems
-        .filter((item) => item.grade === selectedFilter)
-        .map((item) => item.options.itemTypes)
-    )
+    setSelctedSubFilter("");
   }, [selectedFilter]);
 
+  //서브필터 목록이 바뀌면
+  useEffect(() => {
+    console.log(subFilters);
+  }, [subFilters]);
+  
+  //서브필터가 선택되면
+  useEffect(() => {
+    console.log(metaItems
+      .filter((item) => item.grade === selectedFilter));
+    //룬어는 가능한 장비별로
+    if(selectedSubFilter == "") return;
+
+    setItems(
+      metaItems
+        .filter((item) => item.grade === selectedFilter)
+        .filter((item) => (["일반","세트","유니크"].indexOf(selectedFilter) > -1) ? item.type === selectedSubFilter : item.options.itemTypes.indexOf(selectedSubFilter) > -1));
+
+  }, [selectedSubFilter]);
   const handleFilterClick = (value) => {
     setSelctedFilter(value);
   };
+
+  const handleSubFilterClick = (value) => {
+    setSelctedSubFilter(value);
+  }
+
 
   //console.log(selectedFilter);
   return (
@@ -152,6 +204,17 @@ const Items = () => {
           </FilterItem>
         ))}
       </FilterContainer>
+      {selectedFilter !== "all" && 
+        <SubFilterContainer>
+        {subFilters.map((subFilter, index) => <SubFilterItem
+          id={index}
+          onClick={() => handleSubFilterClick(subFilter)}
+          isSubFilterSelected={selectedSubFilter === subFilter}
+          >{subFilter}
+          </SubFilterItem>
+        )}
+        </SubFilterContainer>
+      }
       <ItemListcontainer>
       {error 
         ? <div>아이템 정보를 가져오던중 에러가 발생하였습니다.</div>
