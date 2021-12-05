@@ -22,13 +22,14 @@ export const ItemContainerTopLeft = styled.div`
 `;
 export const ItemImageContainer = styled.div`
   background-color: white;
-  width: 100%;
-  height: 100%;
+  width: 175px;
+  height: 200px;
   display: flex;
   justify-content: center;
 `;
 export const ItemImage = styled.img`
   src: ${p => p.src};
+  object-fit: contain;
 `;
 export const ItemContainerTopRight = styled.div`
   background-color: lightgoldenrodyellow;

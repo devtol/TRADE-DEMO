@@ -130,6 +130,7 @@ const Items = () => {
     { id: 2, name: "세트", value: "세트", color: "green" },
     { id: 3, name: "고유", value: "유니크", color: "gold" },
     { id: 4, name: "룬어", value: "룬어", color: "gray" },
+    { id: 5, name: "룬", value: "룬", color: "gray" },
   ];
 
   //필터가 선택되면
@@ -176,7 +177,11 @@ const Items = () => {
     setItems(
       metaItems
         .filter((item) => item.grade === selectedFilter)
-        .filter((item) => (["일반","세트","유니크"].indexOf(selectedFilter) > -1) ? item.type === selectedSubFilter : item.options.itemTypes.indexOf(selectedSubFilter) > -1));
+        .filter((item) => (
+          ["일반","세트","유니크"].indexOf(selectedFilter) > -1) 
+          ? item.type === selectedSubFilter 
+          : item.options.itemTypes.indexOf(selectedSubFilter) > -1)
+        );
 
   }, [selectedSubFilter]);
   const handleFilterClick = (value) => {

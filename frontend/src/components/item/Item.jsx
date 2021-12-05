@@ -6,7 +6,7 @@ const Item = ({ item }) => {
       <s.ItemContainerTop>
         <s.ItemContainerTopLeft>
           <s.ItemImageContainer>
-            <s.ItemImage src={`resources/images/test/${item.image}`} alt={item.image}/>
+            <s.ItemImage src={`resources/images/items/${item.image}`} alt={item.image}/>
           </s.ItemImageContainer>
         </s.ItemContainerTopLeft>
         <s.ItemContainerTopRight>
@@ -16,7 +16,7 @@ const Item = ({ item }) => {
           </s.ItemContainerTopRightTop>
           <s.ItemContainerTopRightBody>
             <s.ItemContainerTopRightBodyTop>{item.name}</s.ItemContainerTopRightBodyTop>
-            <s.ItemContainerTopRightBodyFooter></s.ItemContainerTopRightBodyFooter>
+            <s.ItemContainerTopRightBodyFooter>{item.type}요구레벨{item.options.default.map((item)=> item.name === "요구 레벨").value}</s.ItemContainerTopRightBodyFooter>
           </s.ItemContainerTopRightBody>
           <s.ItemContainerTopRightFooter></s.ItemContainerTopRightFooter>
         </s.ItemContainerTopRight>
