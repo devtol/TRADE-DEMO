@@ -9,25 +9,28 @@ export const ItemContainer = styled.div`
 `;
 export const ItemContainerTop = styled.div`
   flex: 5;
-  background-color: blue;
+  background-color: white;
   display: flex;
 `;
 export const ItemContainerTopLeft = styled.div`
-  width: 100%;
-  height: 100%;
+  width: 175px;
+  height: 200px;
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
 `;
 export const ItemImageContainer = styled.div`
+  width: 100%;
+  height: 100%;
   background-color: white;
-  width: 175px;
-  height: 200px;
   display: flex;
+  align-items: center;
   justify-content: center;
 `;
 export const ItemImage = styled.img`
+  width: ${p => (p.size / 4) * 100}%;
+  height: ${p => (p.size / 4) * 100}%;
   src: ${p => p.src};
   object-fit: contain;
 `;

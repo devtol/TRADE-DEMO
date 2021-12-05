@@ -6,7 +6,7 @@ const Item = ({ item }) => {
       <s.ItemContainerTop>
         <s.ItemContainerTopLeft>
           <s.ItemImageContainer>
-            <s.ItemImage src={`resources/images/items/${item.image}`} alt={item.image}/>
+            <s.ItemImage src={`resources/images/items/${item.image}`} alt={item.image} size={item.size}/>
           </s.ItemImageContainer>
         </s.ItemContainerTopLeft>
         <s.ItemContainerTopRight>
@@ -16,9 +16,12 @@ const Item = ({ item }) => {
           </s.ItemContainerTopRightTop>
           <s.ItemContainerTopRightBody>
             <s.ItemContainerTopRightBodyTop>{item.name}</s.ItemContainerTopRightBodyTop>
-            <s.ItemContainerTopRightBodyFooter>{item.type}요구레벨{item.options.default.map((item)=> item.name === "요구 레벨").value}</s.ItemContainerTopRightBodyFooter>
+            <s.ItemContainerTopRightBodyFooter>{item.type}</s.ItemContainerTopRightBodyFooter>
           </s.ItemContainerTopRightBody>
-          <s.ItemContainerTopRightFooter></s.ItemContainerTopRightFooter>
+          <s.ItemContainerTopRightFooter>
+            {item.options.default.map(e => e.name).find(e => e.indexOf("피해") > -1 || e.indexOf("방어력") > -1)}
+            {item.options.default.reduce((a, c) => { a = c.name.indexOf("피해") > -1 && c; console.log("reduce",a); return a; },{}).value}
+          </s.ItemContainerTopRightFooter>
         </s.ItemContainerTopRight>
       </s.ItemContainerTop>
       <s.ItemContainerBody></s.ItemContainerBody>

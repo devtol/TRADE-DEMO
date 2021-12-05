@@ -140,7 +140,6 @@ const Items = () => {
     selectedFilter === "all" 
       ? setItems(metaItems.slice(0, range * 10))
       : setItems(metaItems.filter((item) => item.grade === selectedFilter).slice(0, range * 10));
-    
     //서브필터를 바꾼다
     if(selectedFilter !== "all") {
       setSubFilters(
