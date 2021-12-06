@@ -19,8 +19,9 @@ const Item = ({ item }) => {
             <s.ItemContainerTopRightBodyFooter>{item.type}</s.ItemContainerTopRightBodyFooter>
           </s.ItemContainerTopRightBody>
           <s.ItemContainerTopRightFooter>
-            {item.options.default.map(e => e.name).find(e => e.indexOf("피해") > -1 || e.indexOf("방어력") > -1)}
-            {item.options.default.reduce((a, c) => { a = c.name.indexOf("피해") > -1 && c; console.log("reduce",a); return a; },{}).value}
+            {item.options.default.map((item) => (
+              (item.name.indexOf("피해") > -1 || item.name.indexOf("방어력") > -1) && <div>{item.name}:{item.value}</div>
+            ))}
           </s.ItemContainerTopRightFooter>
         </s.ItemContainerTopRight>
       </s.ItemContainerTop>
