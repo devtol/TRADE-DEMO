@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import UseScrollY from "../../src/hooks/UseScrollY";
 
 const Container = styled.div`
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
@@ -21,10 +22,11 @@ const ItemContainer = styled.div`
 const FilterContainer = styled.div`
   flex: 1;
   top: 0;
-  padding: 10px 0px;
+  position: sticky;
+  padding: 22px;
   width: 100%;
   height: 50px;
-  //background-color: #e9e9e9;
+  background-color: white;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -45,6 +47,10 @@ const FilterItem = styled.div`
 `;
 const SubFilterContainer = styled.div`
   flex: 1;
+  position: sticky;
+  top: 75px;
+  background-color: white;
+  padding: 20px;
   width: 100%;
   height: 50px;
   display: flex;

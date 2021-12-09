@@ -9,8 +9,6 @@ export const Topbar = styled.div`
   position: fixed;
   width: 100%;
   background-color: #2e367d;
-  box-shadow: 0px 2px 4px #797979;
-  border-bottom: 2px solid #e9d523;
 `;
 export const TopbarContentContainer = styled.div`
   flex: 3;
