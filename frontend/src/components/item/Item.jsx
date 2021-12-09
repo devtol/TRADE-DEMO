@@ -19,7 +19,7 @@ const Item = ({ item }) => {
             <s.ItemContainerTopRightBodyFooter>{item.type}</s.ItemContainerTopRightBodyFooter>
           </s.ItemContainerTopRightBody>
           <s.ItemContainerTopRightFooter>
-            {item.options.default.map((item) => (
+            {item.options.default !== undefined && item.options.default.map((item) => (
               (item.name.indexOf("피해") > -1 || item.name.indexOf("방어력") > -1) && <div>{item.name}:{item.value}</div>
             ))}
           </s.ItemContainerTopRightFooter>
