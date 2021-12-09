@@ -25,7 +25,8 @@ const Item = ({ item }) => {
           </s.ItemContainerTopRightFooter>
         </s.ItemContainerTopRight>
       </s.ItemContainerTop>
-      <s.ItemContainerBody></s.ItemContainerBody>
+      <s.ItemContainerBody>
+      </s.ItemContainerBody>
       <s.ItemContainerFooter>
         <s.ItemContainerFooterLeft></s.ItemContainerFooterLeft>
         <s.ItemContainerFooterRight></s.ItemContainerFooterRight>
