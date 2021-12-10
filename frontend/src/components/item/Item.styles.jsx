@@ -1,7 +1,7 @@
 import styled from "styled-components";
 export const ItemContainer = styled.div`
-  width: 350px;
-  height: 400px;
+  width: 300px;
+  height: auto;
   margin: 10px;
   border: 1px solid silver;
   display: flex;
@@ -13,9 +13,9 @@ export const ItemContainerTop = styled.div`
   display: flex;
 `;
 export const ItemContainerTopLeft = styled.div`
-  width: 175px;
-  height: 200px;
-  flex: 1;
+  width: 125px;
+  height: 150px;
+  flex: 5;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -36,7 +36,7 @@ export const ItemImage = styled.img`
 `;
 export const ItemContainerTopRight = styled.div`
   background-color: lightgoldenrodyellow;
-  flex: 1;
+  flex: 7;
   display: flex;
   flex-direction: column;
 `;
@@ -61,22 +61,46 @@ export const ItemContainerTopRightBody = styled.div`
 `;
 export const ItemContainerTopRightBodyTop = styled.div`
   background-color: lightsalmon;
+  font-size: 14px;
   flex: 7;
+  display: flex;
+  flex-direction: column;
 `;
+export const ItemContainerTopRightBodyTopTop = styled.div`
+  display: flex;
+  flex: 1;
+  align-items: center;
+`
+export const ItemContainerTopRightBodyTopBottom = styled.div`
+  display: flex;
+  flex: 1;
+  align-items: center;
+`
 export const ItemContainerTopRightBodyFooter = styled.div`
   background-color: lightseagreen;
+  font-size: 14px;
   flex: 5;
+  display: flex;
+  align-items: center;
 `;
 export const ItemContainerTopRightFooter = styled.div`
   background-color: lightpink;
+  font-size: 14px;
   flex: 4;
+  display: flex;
+  align-items: center;
 `;
 export const ItemContainerBody = styled.div`
-  flex: 5;
-  background-color: lightblue;
+  flex: 6;
+  font-size: 14px;
+  text-align: center;
+  font-weight: bold;
+  color: #6f72ff;
+  background-color: #000000;
+  padding: 10px 0px;
 `;
 export const ItemContainerFooter = styled.div`
-  flex: 2;
+  flex: 1;
   background-color: lightcoral;
   display: flex;
 `;

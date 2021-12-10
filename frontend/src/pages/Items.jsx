@@ -82,11 +82,11 @@ const ItemListcontainer = styled.div`
 `;
 
 const getRange = (width) => {
-  if(width <= 875) return 1;
-  if(width > 875 && width <= 1248) return 2;
-  if(width > 1248 && width <= 1705) return 3;
-  if(width > 1705 && width <= 2077) return 4;
-  if(width > 2077) return 5;
+  if(width <= 825) return 1;
+  if(width > 825 && width <= 1198) return 2;
+  if(width > 1198 && width <= 1655) return 3;
+  if(width > 1655 && width <= 2027) return 4;
+  if(width > 2027) return 5;
 };
 
 const Items = () => {
