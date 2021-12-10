@@ -23,7 +23,7 @@ const FilterContainer = styled.div`
   flex: 1;
   top: 0;
   position: sticky;
-  padding: 22px;
+  padding: 20px 0px;
   width: 100%;
   height: 50px;
   background-color: white;
@@ -35,7 +35,7 @@ const FilterItem = styled.div`
   padding: 5px 5px;
   width: 40px;
   text-align: center;
-  margin: 0px 10px;
+  margin: 0px 5px;
   background-color: ${(p) => (p.isFilterSelected ? "#2e367d" : "transparent")};
   color: ${(p) => (p.isFilterSelected ? "white" : "black")};
   border-radius: 4px;
@@ -50,7 +50,7 @@ const SubFilterContainer = styled.div`
   position: sticky;
   top: 75px;
   background-color: white;
-  padding: 20px;
+  padding: 10px 0px;
   width: 100%;
   height: 50px;
   display: flex;
