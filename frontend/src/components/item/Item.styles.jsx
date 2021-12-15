@@ -95,10 +95,24 @@ export const ItemContainerBody = styled.div`
   font-size: 14px;
   text-align: center;
   font-weight: bold;
-  color: #6f72ff;
   background-color: #000000;
   padding: 10px 0px;
 `;
+export const ItemOptionContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 0px;
+`
+export const ItemOptionLabel = styled.div`
+  flex: 2;
+  color: white;
+`
+export const ItemOptionText = styled.div`
+  flex: 10;
+  color: #6f72ff;
+`
 export const ItemContainerFooter = styled.div`
   flex: 1;
   background-color: lightcoral;

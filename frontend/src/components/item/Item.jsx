@@ -47,10 +47,20 @@ const Item = ({ item }) => {
       {item.grade !== "일반" &&
       <s.ItemContainerBody>
         {item.category !== "룬" 
-          ? item.options.inherence.map((item) => (<div>{item}</div>))
-          : Object.entries(item.options).map(([k,v]) => (
-              k !== "level" && <div>{convertRuneType(k)}:{v.map(e=><div>{e}</div>)}</div>
+          ? item.options.inherence.map((item) => (
+            <s.ItemOptionContainer>
+              <s.ItemOptionText>
+                {item}
+              </s.ItemOptionText>
+            </s.ItemOptionContainer>
             ))
+          : Object.entries(item.options).map(([k,v]) => (
+              k !== "level" && 
+              <s.ItemOptionContainer>
+                <s.ItemOptionLabel>{convertRuneType(k)}</s.ItemOptionLabel>
+              : <s.ItemOptionText>{v.map(e=>e)}</s.ItemOptionText>
+              </s.ItemOptionContainer>
+          ))
         }
       </s.ItemContainerBody>
       }
