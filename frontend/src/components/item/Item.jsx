@@ -39,7 +39,7 @@ const Item = ({ item }) => {
           <s.ItemContainerTopRightFooter>
             {item.options.default !== undefined 
               ? item.options.default.map((item) => ((item.name.indexOf("피해") > -1 || item.name.indexOf("방어력") > -1) && <div>{item.name}:{item.value}</div>))
-              : item.options.runes !== undefined && item.options.runes.map((rune) => rune)
+              : item.options.runes !== undefined && item.options.runes.join(",")
             }
           </s.ItemContainerTopRightFooter>
         </s.ItemContainerTopRight>
