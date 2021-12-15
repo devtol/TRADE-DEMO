@@ -44,6 +44,7 @@ const Item = ({ item }) => {
           </s.ItemContainerTopRightFooter>
         </s.ItemContainerTopRight>
       </s.ItemContainerTop>
+      {item.grade !== "일반" &&
       <s.ItemContainerBody>
         {item.category !== "룬" 
           ? item.options.inherence.map((item) => (<div>{item}</div>))
@@ -51,8 +52,8 @@ const Item = ({ item }) => {
               k !== "level" && <div>{convertRuneType(k)}:{v.map(e=><div>{e}</div>)}</div>
             ))
         }
-
       </s.ItemContainerBody>
+      }
     </s.ItemContainer>
   );
 };
